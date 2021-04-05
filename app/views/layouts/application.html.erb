@@ -12,7 +12,21 @@
 
   <body>
     <div class="container">
-      <%= link_to "Home", root_path %>
+      <%= link_to "Home", root_path %> |
+
+      <% if user_signed_in? %>
+        <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %> |
+      <% elsif !admin_signed_in? %>
+        <%= link_to "Sign In", new_user_session_path %> |
+      <% end %>
+
+      <% if admin_signed_in? %>
+        <%= link_to 'Sign Out as Admin', destroy_admin_session_path, method: :delete %> |
+      <% elsif !user_signed_in? %>
+        <%= link_to "Sign In as Admin", new_admin_session_path %> |
+      <% end %>
+
+
       <%= yield %>
     </div>
 

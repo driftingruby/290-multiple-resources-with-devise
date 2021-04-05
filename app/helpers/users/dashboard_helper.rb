@@ -1,0 +1,2 @@
+module Users::DashboardHelper
+end
